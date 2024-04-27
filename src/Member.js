@@ -68,7 +68,7 @@ function Member(prop) {
                             value={member.name}
                             className="h-8 w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none"
                         ></input>
-                        <button className="i-lucide-trash-2 h-8 bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" onClick={deleteMember}></button>
+                        <button className="i-lucide-trash-2 h-8 bg-gray-400 active:bg-gray-500 text-white font-bold py-2 px-4 rounded" onClick={deleteMember}></button>
                     </div>)}
                 <div className="flex">
                     <input
@@ -76,7 +76,7 @@ function Member(prop) {
                         onChange={(e) => setMemberName(e.target.value)}
                         onKeyDown={handleKeyDown}
                         className="h-8 w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none" />
-                    <button className="i-lucide-plus h-8 bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" onClick={addMember}></button>
+                    <button className="i-lucide-plus h-8 bg-gray-400 active:bg-gray-500 text-white font-bold py-2 px-4 rounded" onClick={addMember}></button>
                 </div>
             </div>
         </div>

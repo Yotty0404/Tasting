@@ -52,6 +52,12 @@ function App() {
     setMemberList([...memberList]);
   }
 
+  
+  function register() {
+
+  }
+
+
   function openModal() {
     setIsOpen(true);
   }
@@ -65,12 +71,13 @@ function App() {
   return (
     <div id="container">
       <div id="header">
-        <span onClick={openModal} className="i-lucide-settings relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer hover:bg-gray-900"></span>
+        <span onClick={openModal} className="i-lucide-settings relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
       </div>
 
       <div id="main">
-        <div>
-          <span onClick={shuffle} className="i-lucide-refresh-ccw relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer hover:bg-gray-900"></span>
+        <div id="main_buttons">
+          <span onClick={shuffle} className="i-lucide-refresh-ccw relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
+          <span onClick={register} className="i-lucide-square-check-big relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
         </div>
 
         <div iD="main_container">
@@ -89,7 +96,7 @@ function App() {
         id="modal"
       >
         <div >
-          <button onClick={closeModal} className="i-lucide-x relative -top-2 -right-0 float-right font-bolder text-4xl bg-gray-500 hover:bg-gray-900"></button>
+          <button onClick={closeModal} className="i-lucide-x relative -top-2 -right-0 float-right font-bolder text-4xl bg-gray-500 active:bg-gray-900"></button>
           <h2 className="text-center text-xl">設定</h2>
           <div id="modal_container">
             <Member isMember={true} />
