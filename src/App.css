@@ -1,5 +1,7 @@
 * {
   font-family: "メイリオ", Meiryo, sans-serif;
+  font-size: 18px;
+  /* font-weight: bold; */
 }
 
 #container {
@@ -70,8 +72,22 @@
   overflow: hidden;
   text-wrap: nowrap;
 }
-.main_score {
+.main_score_container {
   width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_score_container div {
+  margin: 0 14px;
+}
+
+.main_score {
+  text-align: center;
+  width: 20px;
+  font-weight: 600;
 }
 
 #modal {

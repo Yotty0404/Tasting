@@ -16,7 +16,12 @@ function App() {
 
   function setList() {
     var memberList = JSON.parse(localStorage.getItem("member"));
+
+
     if (memberList != null) {
+      memberList.forEach((member) => {
+        member.score = 0;
+      });
       setMemberList(memberList);
     }
   }
@@ -52,11 +57,21 @@ function App() {
     setMemberList([...memberList]);
   }
 
-  
-  function register() {
 
+  function register() {
   }
 
+  function plus(index) {
+    const newMemberList = [...memberList];
+    newMemberList[index].score +=1;
+    setMemberList(newMemberList);
+  }
+
+  function minus(index) {
+    const newMemberList = [...memberList];
+    newMemberList[index].score -=1;
+    setMemberList(newMemberList);
+  }
 
   function openModal() {
     setIsOpen(true);
@@ -85,7 +100,11 @@ function App() {
             <div className={index % 2 === 0 ? "main_row" : "main_row odd"}>
               <div className='main_member'>{member.name}</div>
               <div className='main_item'>{member.item !== undefined ? member.item.name : ''}</div>
-              <div className='main_score'>score</div>
+              <div className='main_score_container'>
+                <span onClick={(e) => minus(index)} className="i-lucide-minus relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
+                <div className='main_score'>{member.score}</div>
+                <span onClick={(e) => plus(index)} className="i-lucide-plus relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
+              </div>
             </div>)}
         </div>
       </div>
@@ -97,10 +116,11 @@ function App() {
       >
         <div >
           <button onClick={closeModal} className="i-lucide-x relative -top-2 -right-0 float-right font-bolder text-4xl bg-gray-500 active:bg-gray-900"></button>
-          <h2 className="text-center text-xl">設定</h2>
+          <h2 className="text-center text-xl m-2">メンバーリスト</h2>
           <div id="modal_container">
             <Member isMember={true} />
-            <div className="m-4"></div>
+            <div className="m-2"></div>
+            <h2 className="text-center text-xl m-2">アイテムリスト</h2>
             <Member isMember={false} />
           </div>
         </div>
