@@ -8,7 +8,6 @@ function Member(prop) {
     useEffect(() => {
 
         var list = JSON.parse(localStorage.getItem(prop.isMember ? "member" : "item"));
-        console.log(list)
         if(list == null) return;
         setMemberList(list)
 
