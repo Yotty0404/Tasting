@@ -101,9 +101,9 @@ function App() {
               <div className='main_member'>{member.name}</div>
               <div className='main_item'>{member.item !== undefined ? member.item.name : ''}</div>
               <div className='main_score_container'>
-                <span onClick={(e) => minus(index)} className="i-lucide-minus relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
+                <span onClick={(e) => minus(index)} className="i-lucide-minus relative float-right font-bolder text-5xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
                 <div className='main_score'>{member.score}</div>
-                <span onClick={(e) => plus(index)} className="i-lucide-plus relative float-right font-bolder text-3xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
+                <span onClick={(e) => plus(index)} className="i-lucide-plus relative float-right font-bolder text-5xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
               </div>
             </div>)}
         </div>
