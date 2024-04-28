@@ -12,19 +12,18 @@
   flex-direction: column;
 }
 
-#container div{
-  font-family: "メイリオ", Meiryo, sans-serif;
-  font-size: 18px;
-}
-
 #header {
-  height: 40px;
+  height: 52px;
   width: 100%;
-  padding: 8px;
+  padding: 0px;
   border-bottom: rgb(170, 170, 170) 1px solid;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+#header span {
+  margin: 0 8px;
 }
 
 #main {
@@ -32,18 +31,21 @@
   height: calc(100% - 40px);
   width: 100%;
   padding: 8px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
 
-#main_buttons {
-  display: flex;
+#main div {
+  font-size: 24px;
 }
 
-#main_buttons span {
-  margin: 4px 12px;
+
+#main_buttons {
+  display: flex;
+  justify-content: center;
 }
 
 #main_container {
@@ -80,8 +82,9 @@
   overflow: hidden;
   text-wrap: nowrap;
 }
+
 .main_score_container {
-  width: 100px;
+  width: 160px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -94,8 +97,12 @@
 
 .main_score {
   text-align: center;
-  width: 20px;
+  width: 40px;
   font-weight: 600;
+}
+
+#game_count {
+  height: 28px;
 }
 
 #modal {
@@ -106,4 +113,68 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.react-confirm-alert-overlay {
+  display: flex;
+  align-items: flex-start !important;
+}
+
+.react-confirm-alert-body {
+  margin-top: 24px;
+}
+
+
+.table-wrap {
+  overflow-x: scroll;
+}
+
+table {
+  max-width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+table th,
+table td {
+  border: 2px solid #eee;
+  padding: 4px 8px;
+}
+
+.result_name {
+  width: 100px;
+}
+
+.gameMaster::before {
+  color: #FFC93C;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  mask-image: var(--svg);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  font-size: 32px;
+  --svg: url(https://api.iconify.design/lucide:crown.svg);
+  content: '';
+}
+
+.sameItem {
+  color: #FF5722;
+}
+
+.button_label {
+  display: flex;
+  align-items: center;
+}
+
+
+.button_label div {
+  height: 24px;
+  font-size: 18px !important;
+}
+
+.setting_container {
+  margin-right: 10px;
+  ;
 }
