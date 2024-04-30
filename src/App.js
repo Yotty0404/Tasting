@@ -68,7 +68,7 @@ function App() {
   function shuffle() {
     let assignments = {};
     const itemList = JSON.parse(localStorage.getItem("item"));
-    const idList = memberList.map(item => item.id);
+    const idList = memberList.filter(x => !x.isAbstention && !x.isGameMaster).map(item => item.id);
 
     loopInRandomOrder(idList, (targetId) => {
       const availableItems = itemList.filter(item => !Object.values(assignments).includes(item));
@@ -80,26 +80,23 @@ function App() {
       }
 
       const targetElement = memberList.find(item => item.id === targetId);
-      if (targetElement.isGameMaster || targetElement.isAbstention) {
-        targetElement['item'] = { id: -1, name: '-' };
-      }
-      else {
-        var lastResult = result[result.length - 1];
-        if (lastResult != undefined) {
-          var lastItem = lastResult.find(x => x.id === targetElement.id);
-          if (lastItem != undefined && lastItem.item.id == availableItems[randomIndex].id) {
-            targetElement.isSameItem = true;
-          }
-          else {
-            targetElement.isSameItem = false;
-          }
+      var lastResult = result[result.length - 1];
+      if (lastResult != undefined) {
+        var lastItem = lastResult.find(x => x.id === targetElement.id);
+        if (lastItem != undefined && lastItem.item.id == availableItems[randomIndex].id) {
+          targetElement.isSameItem = true;
         }
         else {
           targetElement.isSameItem = false;
         }
-        targetElement['item'] = availableItems[randomIndex];
       }
+      else {
+        targetElement.isSameItem = false;
+      }
+      targetElement['item'] = availableItems[randomIndex];
     });
+
+    memberList.filter(x => x.isAbstention || x.isGameMaster).map(item => item['item'] = { id: -1, name: '-' });
 
     setMemberList([...memberList]);
   }
