@@ -103,7 +103,10 @@ function App() {
       targetElement['item'] = availableItems[randomIndex];
     });
 
-    memberList.filter(x => x.isAbstention || x.isGameMaster).map(item => item['item'] = { id: -1, name: '-' });
+    memberList.filter(x => x.isAbstention || x.isGameMaster).map(member => {
+      member.isSameItem = false;
+      member['item'] = { id: -1, name: '-', isSameItem: false }
+    });
 
     setMemberList([...memberList]);
   }
