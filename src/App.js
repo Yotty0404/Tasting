@@ -318,7 +318,7 @@ function App() {
           <div className="table-wrap my-4">
             <table>
               <tr>
-                <td></td>
+                <td className='result_name'></td>
                 {result.map((resultRow, index) =>
                   <td className='text-center total'>
                     {index == result.length - 1 ? "合計" : `第${index + 1}回`}
