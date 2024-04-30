@@ -133,16 +133,23 @@ table {
   max-width: 100%;
   border-collapse: collapse;
   white-space: nowrap;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 table th,
 table td {
-  border: 2px solid #eee;
+  border: 1px solid #ddd;
   padding: 4px 8px;
 }
 
 .result_name {
   width: 100px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  border: 1px solid #ddd;
+  background: white;
 }
 
 .gameMaster::before {
@@ -177,4 +184,32 @@ table td {
 .setting_container {
   margin-right: 10px;
   ;
+}
+
+.total {
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+
+.cant_change_score span {
+  visibility: hidden;
+}
+
+.abstention_member::before{
+  color: #aaa;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  mask-image: var(--svg);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  font-size: 32px;
+  --svg: url(https://api.iconify.design/lucide:flag-off.svg);
+  content: '';
+}
+
+.total_num{
+  text-align: center;
 }

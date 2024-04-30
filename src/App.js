@@ -40,7 +40,7 @@ function App() {
     if (memberList.length == memberListJson.length) {
       var isAllSameName = true;
       for (let i = 0; i < memberList.length; i++) {
-        if (memberList[i].name != memberListJson[i].name) {
+        if (memberList[i].name != memberListJson[i].name || memberList[i].isAbstention != memberListJson[i].isAbstention) {
           isAllSameName = false;
         }
       }
@@ -80,7 +80,7 @@ function App() {
       }
 
       const targetElement = memberList.find(item => item.id === targetId);
-      if (targetElement.isGameMaster) {
+      if (targetElement.isGameMaster || targetElement.isAbstention) {
         targetElement['item'] = { id: -1, name: '-' };
       }
       else {
@@ -163,7 +163,35 @@ function App() {
   }
 
   function openModalResult() {
-    const resultJson = JSON.parse(localStorage.getItem("result"));
+    var resultJson = JSON.parse(localStorage.getItem("result"));
+    if (resultJson == null) {
+      resultJson = [];
+    }
+    else {
+      var sumList = [];
+
+      memberList.forEach(member => {
+        var sum = 0;
+
+        resultJson.forEach(resultRow => {
+          var o = resultRow.find(x => x.name === member.name);
+          if (o) {
+            sum += o.score;
+          }
+        });
+
+        var sumRow = {};
+        sumRow.name = member.name;
+        sumRow.score = sum;
+        sumRow.item = { name: "　" };
+        sumRow.isTotal = true;
+
+        sumList.push(sumRow);
+      });
+
+      resultJson.push(sumList);
+    }
+
     setResult(resultJson == null ? [] : resultJson);
     setIsOpenResult(true);
   }
@@ -199,6 +227,7 @@ function App() {
     for (let i = 0; i < memberList.length; i++) {
       if (i == index) {
         newMemberList[i].isGameMaster = true;
+        newMemberList[i].score = 0;
       }
       else {
         newMemberList[i].isGameMaster = false;
@@ -239,9 +268,9 @@ function App() {
         <div iD="main_container">
           {memberList.map((member, index) =>
             <div className={index % 2 === 0 ? "main_row" : "main_row odd"}>
-              <div className={member.isGameMaster ? "main_member gameMaster" : "main_member"} onClick={(e) => setGameMaster(index)}>{member.name}</div>
+              <div className={member.isGameMaster ? "main_member gameMaster" : member.isAbstention ? "main_member abstention_member" : "main_member"} onClick={(e) => setGameMaster(index)}>{member.name}</div>
               <div className={member.isSameItem ? "main_item sameItem" : "main_item"}>{member.item !== undefined ? member.item.name : ''}</div>
-              <div className='main_score_container'>
+              <div className={member.isGameMaster || member.isAbstention ? "main_score_container cant_change_score" : "main_score_container"}>
                 <span onClick={(e) => minus(index)} className="i-lucide-minus relative float-right font-bolder text-5xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
                 <div className='main_score'>{member.score}</div>
                 <span onClick={(e) => plus(index)} className="i-lucide-plus relative float-right font-bolder text-5xl bg-gray-500 cursor-pointer active:bg-gray-900"></span>
@@ -279,15 +308,23 @@ function App() {
             onClick={deleteResultMessage}></button>
 
 
-          <div class="table-wrap">
+          <div className="table-wrap my-4">
             <table>
+              <tr>
+                <td></td>
+                {result.map((resultRow, index) =>
+                  <td className='text-center total'>
+                    {index == result.length - 1 ? "合計" : `第${index + 1}回`}
+                  </td>
+                )}
+              </tr>
               {memberList.map((member, index) =>
                 <tr>
                   <td className='result_name'>{member.name}</td>
 
                   {result.map((resultRow, index2) =>
-                    <td className='result_info'>
-                      <div>{resultRow[index] == undefined ? '' : resultRow[index].item.name}</div>
+                    <td className={resultRow[index] != undefined && resultRow[index].isTotal ? "result_info total_num" : "result_info"}>
+                      <div>{resultRow[index] == undefined || resultRow[index].item == undefined ? '' : resultRow[index].item.name}</div>
                       <div>{resultRow[index] == undefined ? '' : resultRow[index].score}</div>
                     </td>
                   )}
