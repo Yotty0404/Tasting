@@ -92,7 +92,7 @@ function Member(prop) {
                             <button className="i-lucide-trash-2 h-8 bg-gray-400 active:bg-gray-500 text-white font-bold py-2 px-4 rounded"></button>
                             <div>削除</div>
                         </div>
-                        <div className='button_label setting_container mx-2' onClick={setAbstention} style={{ visibility: prop.isMember ? "visible" : "hidden" }} >
+                        <div className='button_label setting_container mx-2 flag' onClick={setAbstention} style={{ visibility: prop.isMember ? "visible" : "hidden" }} >
                             <button className={member.isAbstention ? "i-lucide-flag-off h-8 bg-red-400 active:bg-red-500 text-white font-bold py-2 px-4 rounded"
                                 : "i-lucide-flag-off h-8 bg-gray-400 active:bg-red-500 text-white font-bold py-2 px-4 rounded"}></button>
                             <div>不参加</div>
@@ -105,6 +105,7 @@ function Member(prop) {
                         onKeyDown={handleKeyDown}
                         className="h-8 w-80 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none" />
                     <button className="i-lucide-plus h-8 bg-gray-400 active:bg-gray-500 text-white font-bold py-2 px-4 rounded" onClick={addMember}></button>
+                <span className='w-36 empty_item'></span>
                 </div>
             </div>
         </div>

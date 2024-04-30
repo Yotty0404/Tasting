@@ -37,6 +37,8 @@ function App() {
   function setList() {
     var memberListJson = JSON.parse(localStorage.getItem("member"));
 
+    if (memberListJson == null) return;
+
     if (memberList.length == memberListJson.length) {
       var isAllSameName = true;
       for (let i = 0; i < memberList.length; i++) {

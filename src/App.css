@@ -196,7 +196,7 @@ table td {
   visibility: hidden;
 }
 
-.abstention_member::before{
+.abstention_member::before {
   color: #aaa;
   display: inline-block;
   width: 1em;
@@ -210,6 +210,58 @@ table td {
   content: '';
 }
 
-.total_num{
+.total_num {
   text-align: center;
+}
+
+
+
+@media screen and (max-width: 480px) {
+  * {
+    font-size: 16px;
+  }
+
+  #main div {
+    font-size: 16px;
+  }
+
+  .main_row {
+    height: 40px;
+  }
+
+  #main_container {
+    width: 95%;
+  }
+
+  .flag {
+    margin-left: 0px;
+  }
+
+  .button_label div {
+    display: none;
+  }
+
+  .main_score_container {
+    width: 100px;
+  }
+
+  .main_score_container span {
+    font-size: 30px;
+  }
+
+  .main_score_container div {
+    margin: 0 8px;
+  }
+
+  .main_score {
+    width: 18px;
+  }
+
+  input {
+    width: 160px !important;
+  }
+
+  .empty_item {
+    width: 4rem;
+  }
 }
