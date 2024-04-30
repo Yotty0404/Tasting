@@ -81,9 +81,16 @@ function App() {
 
       const targetElement = memberList.find(item => item.id === targetId);
       var lastResult = result[result.length - 1];
+
       if (lastResult != undefined) {
         var lastItem = lastResult.find(x => x.id === targetElement.id);
-        if (lastItem != undefined && lastItem.item.id == availableItems[randomIndex].id) {
+
+        //一度結果画面を開いた後を考慮
+        if (lastItem == undefined) {
+          lastItem = result[result.length - 2].find(x => x.id === targetElement.id);
+        }
+
+        if (lastItem != undefined && !lastItem.isGameMaster && !lastItem.isAbstention && lastItem.item.id == availableItems[randomIndex].id) {
           targetElement.isSameItem = true;
         }
         else {
